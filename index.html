@@ -22,7 +22,7 @@
                 <img :src="img" :alt="nome" class="produto_img" />
 
                 <div class="produto_info">
-                    <span class="produto_preco">{{preco}}</span>
+                    <span class="produto_preco">{{preco | numeroPreco}}</span>
                     <h2 class="produto_titulo">{{nome}}</h2>
                 </div>
             </div>
