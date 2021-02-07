@@ -51,3 +51,8 @@ body {
     font-size: 3rem;
     line-height: 1;
 }
+
+/* Modal */
+.modal {
+    background-color: #FFF;
+}
