@@ -17,8 +17,17 @@
 </head>
 <body>
     <div id="App">
+        <section class="modal">
+            {{produto}}
+        </section>
+
         <section class="produtos">
-            <div v-for="({ id, img, nome, preco }) in produtos" :key="id" class="produto">
+            <div
+                v-for="({ id, img, nome, preco }) in produtos"
+                :key="id"
+                @click="fetchProduto(id)"
+                class="produto"
+            >
                 <img :src="img" :alt="nome" class="produto_img" />
 
                 <div class="produto_info">
