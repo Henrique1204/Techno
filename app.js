@@ -17,6 +17,16 @@ const vm = new Vue({
         async fetchProduto(id) {
             const res = await fetch(`./api/produtos/${id}/dados.json`);
             this.produto = await res.json();
+        },
+        abrirModal(id) {
+            this.fetchProduto(id);
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            })
+        },
+        fecharModal({ target, currentTarget }) {
+            if (target === currentTarget) this.produto = null;
         }
     },
     created() {
