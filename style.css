@@ -1,0 +1,52 @@
+/* Reset */
+*, *::after, *::before {
+    font-family: inherit;
+    color: inherit;
+    box-sizing: border-box;
+}
+
+body, h1, h2, ul, li {
+    padding: 0px;
+    margin: 0px;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    font-family: "Noto Serif";
+    background: linear-gradient(to right, #1A1A1A 30%, #FFF 30%);
+}
+
+#App {
+    padding: 0px 80px;
+}
+
+/* Lista Produtos */
+.produtos {
+    max-width: 900px;
+    margin: 100px auto 0;
+}
+
+.produto {
+    margin-bottom: 40px;
+    background-color: #FFF;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.produto_img {
+    max-width: 300px;
+    margin-right: 40px;
+}
+
+.produto_preco {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.produto_titulo {
+    font-size: 3rem;
+    line-height: 1;
+}

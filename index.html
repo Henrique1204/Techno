@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,25 @@
     <script src="./vue.min.js"></script>
     <!-- Scripts -->
     <script src="./app.js" defer></script>
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
     <title>Techno</title>
 </head>
 <body>
     <div id="App">
-        {{produtos}}
+        <section class="produtos">
+            <div v-for="({ id, img, nome, preco }) in produtos" :key="id" class="produto">
+                <img :src="img" :alt="nome" class="produto_img" />
+
+                <div class="produto_info">
+                    <span class="produto_preco">{{preco}}</span>
+                    <h2 class="produto_titulo">{{nome}}</h2>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 </html>
