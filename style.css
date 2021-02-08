@@ -209,6 +209,7 @@ body {
     top: 20px;
     left: 0px;
     z-index: 10;
+    pointer-events: none;
 }
 
 @keyframes fadeInDown {
