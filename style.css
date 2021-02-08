@@ -304,3 +304,66 @@ body {
     display: block;
     cursor: pointer;
 }
+
+/* Responsividade */
+@media screen and (max-width: 900px) {
+    #App {
+        padding: 0 10px;
+    }
+
+    /* Lista Produtos */
+    .produtos {
+        margin-top: 40px;
+    }
+
+    .produto {
+        max-width: 300px;
+        margin: 30px auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .produto_info {
+        padding: 20px;
+    }
+
+    .produto_titulo {
+        font-size: 1.5rem;
+    }
+
+    /* Modal Produto */
+    .modal {
+        padding: 10px;
+    }
+
+    .modal_container {
+        padding: 10px 0;
+        background: #FFF;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .modal_img {
+        width: 100%;
+        grid-row: 2;
+    }
+
+    .modal_dados {
+        padding: 10px;
+        grid-column: 1;
+    }
+
+    .modal_btn {
+        margin-top: 20px;
+    }
+
+    .avaliacoes {
+        padding: 10px;
+        grid-column: 1;
+    }
+
+    /* Modal Carrinho */
+    .carrinho_modal {
+        padding: 10px;
+    }
+}
