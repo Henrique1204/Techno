@@ -7,7 +7,7 @@ const vm = new Vue({
     },
     filters: {
         numeroPreco(preco) {
-            return preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+            return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
     },
     computed: {
@@ -25,12 +25,20 @@ const vm = new Vue({
             const res = await fetch(`./api/produtos/${id}/dados.json`);
             this.produto = await res.json();
         },
+        fecharModalEsc({ key }) {
+            if(key === 'Escape') {
+                this.produto = null;
+                window.removeEventListener("keydown", this.fecharModalEsc);
+            }
+        },
         abrirModal(id) {
             this.fetchProduto(id);
             window.scrollTo({
                 top: 0,
-                behavior: "smooth"
-            })
+                behavior: 'smooth'
+            });
+
+            window.addEventListener("keydown", this.fecharModalEsc);
         },
         adicionarItem() {
             this.produto.estoque--;
@@ -41,6 +49,7 @@ const vm = new Vue({
         },
         fecharModal({ target, currentTarget }) {
             if (target === currentTarget) this.produto = null;
+            window.removeEventListener("keydown", this.fecharModalEsc);
         },
         removerItem(ini) {
             this.carrinho.splice(ini, 1);
