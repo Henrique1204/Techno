@@ -4,7 +4,8 @@ const vm = new Vue({
         carrinho: [],
         produtos: [],
         produto: null,
-        mensagemAlerta: ''
+        mensagemAlerta: '',
+        carrinhoAtivo: false
     },
     filters: {
         numeroPreco(preco) {
@@ -29,7 +30,7 @@ const vm = new Vue({
         fecharModalEsc({ key }) {
             if (key === 'Escape') {
                 this.produto = null;
-                window.removeEventListener('keydown', this.fecharModalEsc);
+                window.removeEventListener('keyup', this.fecharModalEsc);
             }
         },
         abrirModal(id) {
@@ -39,7 +40,7 @@ const vm = new Vue({
                 behavior: 'smooth'
             });
 
-            window.addEventListener('keydown', this.fecharModalEsc);
+            window.addEventListener('keyup', this.fecharModalEsc);
         },
         adicionarItem() {
             this.produto.estoque--;
@@ -51,7 +52,7 @@ const vm = new Vue({
         },
         fecharModal({ target, currentTarget }) {
             if (target === currentTarget) this.produto = null;
-            window.removeEventListener('keydown', this.fecharModalEsc);
+            window.removeEventListener('keyup', this.fecharModalEsc);
         },
         removerItem(ini) {
             this.carrinho.splice(ini, 1);
@@ -69,7 +70,21 @@ const vm = new Vue({
         router() {
             const hash = document.location.hash;
             if (hash) this.fetchProduto(hash.replace('#', ''));
-        }
+        },
+        abrirModalCarrinho() {
+            this.carrinhoAtivo = true;
+            window.addEventListener('keyup', this.fecharModalCarrinhoEsc);
+        },
+        fecharModalCarrinhoEsc({ key }) {
+            if (key === 'Escape') {
+                this.carrinhoAtivo = false;
+                window.removeEventListener('keyup', this.fecharModalCarrinhoEsc);
+            }
+        },
+        fecharModalCarrinho({ target, currentTarget }) {
+            if (target === currentTarget) this.carrinhoAtivo = false;
+            window.removeEventListener('keyup', this.fecharModalCarrinhoEsc);
+        },
     },
     watch: {
         produto() {
