@@ -3,7 +3,8 @@ const vm = new Vue({
     data: {
         carrinho: [],
         produtos: [],
-        produto: null
+        produto: null,
+        mensagemAlerta: ''
     },
     filters: {
         numeroPreco(preco) {
@@ -28,7 +29,7 @@ const vm = new Vue({
         fecharModalEsc({ key }) {
             if(key === 'Escape') {
                 this.produto = null;
-                window.removeEventListener("keydown", this.fecharModalEsc);
+                window.removeEventListener('keydown', this.fecharModalEsc);
             }
         },
         abrirModal(id) {
@@ -38,7 +39,7 @@ const vm = new Vue({
                 behavior: 'smooth'
             });
 
-            window.addEventListener("keydown", this.fecharModalEsc);
+            window.addEventListener('keydown', this.fecharModalEsc);
         },
         adicionarItem() {
             this.produto.estoque--;
@@ -46,18 +47,24 @@ const vm = new Vue({
             const { id, nome, preco } = this.produto;
 
             this.carrinho.push({ id, nome, preco });
+            this.ativarAlerta(`${nome} adicionado ao carrinho.`);
         },
         fecharModal({ target, currentTarget }) {
             if (target === currentTarget) this.produto = null;
-            window.removeEventListener("keydown", this.fecharModalEsc);
+            window.removeEventListener('keydown', this.fecharModalEsc);
         },
         removerItem(ini) {
             this.carrinho.splice(ini, 1);
+            this.ativarAlerta('Item removido com sucesso!');
         },
         checarLocalStorage() {
             if(window.localStorage.carrinho) {
                 this.carrinho = JSON.parse(window.localStorage.carrinho);
             }
+        },
+        ativarAlerta(mensagem) {
+            this.mensagemAlerta = mensagem;
+            setTimeout(() => (this.mensagemAlerta = ''), 1500);
         }
     },
     watch: {
